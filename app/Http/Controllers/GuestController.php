@@ -16,6 +16,11 @@ class GuestController extends Controller
         $this->middleware('guest');
     }
 
+    public function sqltest(){
+        $rows=Lecture::get();
+        var_dump($rows);
+    }
+
     public function index()
     {
         return view('mainpage.home');
