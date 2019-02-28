@@ -34,6 +34,40 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout'); 
+    }
+
+    public function redirectToProvider($service)
+    {
+        //echo "reconnecting";
+        return Socialite::driver($service)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($service)
+    {
+        //echo "reconnecting";
+        
+        $userSocial = Socialite::driver($service)->user();
+        $user = $this->findOrCreateUser($userSocial,  $service);
+        return $user->getEmail();
+    }
+
+    public function findOrCreateUser($user, $provider)
+    {
+        $authUser = User::where('provider_id', $user->id)->first();
+        if ($authUser) {
+            return $authUser;
+        }
+        return User::create([
+            'name'     => $user->name,
+            'email'    => $user->email,
+            'provider' => $provider,
+            'provider_id' => $user->id
+        ]);
     }
 }
