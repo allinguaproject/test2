@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-4">
       <div id="level2_brick"></div>
-      <a href="" class="brick_a"> Level 2</a>
+      <a href="{{route('login.social','facebook')}}" class="brick_a"> Level 2</a>
 
     </div>
     <div class="col-md-4">

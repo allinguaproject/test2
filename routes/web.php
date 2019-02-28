@@ -16,6 +16,8 @@
     Sites available for guests
 */
 
+Route::get('login/{service}', 'Auth\LoginController@redirectToProvider')->name('login.social');
+Route::get('callback/{service}', 'Auth\LoginController@handleProviderCallback');
 
    
 Route::get('/', 'GuestController@index')->name('home')->middleware('guest');
