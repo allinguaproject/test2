@@ -23,7 +23,6 @@ Route::get('callback/{service}', 'Auth\LoginController@handleProviderCallback');
 Route::get('/', 'GuestController@index')->name('home')->middleware('guest');
 Route::get('/home', 'GuestController@index')->name('home');
 Route::get('/playGame/{index}', 'GuestController@playGame')->name('play.game');
-Route::get('/sqltest', 'GuestController@sqltest')->name('play.game');
 
 Route::get('/getGame', 'GuestController@getGame')->name('get.game');
 
