@@ -57,12 +57,13 @@ class LoginController extends Controller
         //echo "reconnecting";
         
         $userSocial = Socialite::driver($service)->user();
-        $user = $this->findOrCreateUser($userSocial,  $service);
-        return $user->getEmail();
+        //$user = $this->findOrCreateUser($userSocial,  $service);
+        return json_encode($userSocial);
     }
 
     public function findOrCreateUser($user, $provider)
     {
+	/*
         $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
@@ -72,6 +73,6 @@ class LoginController extends Controller
             'email'    => $user->email,
             'provider' => $provider,
             'provider_id' => $user->id
-        ]);
+        ])*/;
     }
 }
