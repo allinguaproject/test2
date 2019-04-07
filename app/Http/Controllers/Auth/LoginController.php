@@ -52,13 +52,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback($service)
+    public function handleProviderCallback($service) 
     {
         //echo "reconnecting";
         
         $userSocial = Socialite::driver($service)->user();
-        $user = $this->findOrCreateUser($userSocial,  $service);
-        return $user->getEmail();
+        //$user = $this->findOrCreateUser($userSocial,  $service);
+        //return $user->getEmail();
     }
 
     public function findOrCreateUser($user, $provider)
